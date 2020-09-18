@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace Flooring_Estimator
 {
@@ -34,10 +35,7 @@ namespace Flooring_Estimator
             double width, length;   // is it proper to place these here?
             double cost;            // can I convert it to (C) here? 
 
-
-
-
-            
+            bool validResponse;
 
             //
             //          *********************
@@ -53,6 +51,9 @@ namespace Flooring_Estimator
             //
             // opening screen
             //
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "C:\\Users\\dougs\\Music\\Yoho\\crowsnest.wav";
+            player.Play();
 
             Console.WriteLine();
             Console.WriteLine("     The Floor Estimator 2020 edition");
@@ -99,18 +100,24 @@ namespace Flooring_Estimator
             Console.Write("     Why hello there, {0}, would you like to put some new flooring?", userName);
             userResponse = Console.ReadLine().ToLower();
             if (userResponse == "yes" || userResponse == "y")
-            {
-                //
-                //          *************************
-                //          *   User Input Screen   *
-                //          *************************
-                //
-                // set cursor invisible and clear screen
-                CursorClear();
+            {   validResponse = true;
+                while (validResponse is true)
+                {
+                    //
+                    //          *************************
+                    //          *   User Input Screen   *
+                    //          *************************
+                    //
+                    // set cursor invisible and clear screen
+                    CursorClear();
 
-                //
-                // display header
-                //
+                    //
+                    // display header
+                    //
+                }
+            }
+            else
+            {
 
             }
 
