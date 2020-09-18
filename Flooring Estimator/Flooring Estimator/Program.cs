@@ -29,34 +29,15 @@ namespace Flooring_Estimator
 
             string userName;
             string userResponse;
-            string currentTimeofDay;
+            string currentTimeOfDay;
 
             double width, length;   // is it proper to place these here?
             double cost;            // can I convert it to (C) here? 
 
 
-            //
-            // determine if its morning, afternoon, evening or night time for user
-            //
 
-            DateTime currentTime = DateTime.Now;
 
-            if (currentTime.Hour < 12 && currentTime.Hour >= 5)
-            {
-                currentTimeofDay = "morning";
-            }
-            else if (currentTime.Hour >= 12)
-            {
-                currentTimeofDay = "afternoon";
-            }
-            else if (currentTime.Hour >= 16)
-            {
-                currentTimeofDay = "evening";
-            }
-            else
-            {
-                currentTimeofDay = "god it's late";
-            }
+            
 
             //
             //          *********************
@@ -81,7 +62,7 @@ namespace Flooring_Estimator
             Console.WriteLine("     Press any key to continue");
             Console.ReadKey();
 
-            //
+            //          
             //          *************************
             //          *   initialize screen   *
             //          *************************
@@ -96,25 +77,71 @@ namespace Flooring_Estimator
             //
             // greet user
             //
+            currentTimeOfDay = timeOfDay();
 
             Console.WriteLine();
-            Console.WriteLine("     Good " + currentTimeofDay + " floor enthusiast!");
+            Console.WriteLine("     Good " + currentTimeOfDay + " floor enthusiast!");
             Console.WriteLine();
             Console.WriteLine("     This application will help you calculate the cost of flooring up to two rooms!");
 
             //
-            // get users name and echo it back
+            // get users name
             //
 
             Console.WriteLine();
             Console.Write("     What is your name?  ");
             userName = Console.ReadLine();
 
+            // clears the screen, sets cursor invisible
+            // echo users name back to them
             CursorClear();
             Console.WriteLine();
-            Console.Write("     Why hello there, {0}, would you like to put some new flooring in two rooms?", userName);
+            Console.Write("     Why hello there, {0}, would you like to put some new flooring?", userName);
+            userResponse = Console.ReadLine().ToLower();
+            if (userResponse == "yes" || userResponse == "y")
+            {
+                //
+                //          *************************
+                //          *   User Input Screen   *
+                //          *************************
+                //
+                // set cursor invisible and clear screen
+                CursorClear();
+
+                //
+                // display header
+                //
+
+            }
+
         }
 
+        //
+        // method to determine if its morning, afternoon, evening or night time for user
+        //
+        public static string timeOfDay()
+        {
+            DateTime currentTime = DateTime.Now;
+            string currentTimeOfDay;
+
+            if (currentTime.Hour< 12 && currentTime.Hour >= 5)
+            {
+                currentTimeOfDay = "morning";
+            }
+            else if (currentTime.Hour >= 12)
+            {
+                currentTimeOfDay = "afternoon";
+            }
+            else if (currentTime.Hour >= 16)
+            {
+                currentTimeOfDay = "evening";
+            }
+            else
+            {
+                currentTimeOfDay = "night";
+            }
+            return currentTimeOfDay;
+        }
         // method to set background and foreground colors for opening screen
         public static void OpenScreen()
         {
