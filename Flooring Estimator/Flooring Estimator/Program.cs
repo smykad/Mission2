@@ -24,6 +24,11 @@ namespace Flooring_Estimator
             // constants
             //
 
+            const double HARDWOOD_FLOOR = 7.80;
+            const double VINYL_FLOOR = 2.00;
+            const double STONE_TILE = 10.30;
+
+
             //
             // variables
             //
@@ -31,9 +36,13 @@ namespace Flooring_Estimator
             string userName;
             string userResponse;
             string currentTimeOfDay;
-
-            double width, length;   // is it proper to place these here?
-            double cost;            // can I convert it to (C) here? 
+            string floorType;
+            
+            int roomOne, roomTwo;
+            int roomOneLength, roomTwoLength, roomOneWidth, roomTwoWidth;
+            double costOne, costTwo;
+            double floorCost;
+            double roomOneDouble, roomTwoDouble;
 
             bool validResponse;
 
@@ -51,9 +60,7 @@ namespace Flooring_Estimator
             //
             // opening screen
             //
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "C:\\Users\\dougs\\Music\\Yoho\\crowsnest.wav";
-            player.Play();
+
 
             Console.WriteLine();
             Console.WriteLine("     The Floor Estimator 2020 edition");
@@ -76,62 +83,158 @@ namespace Flooring_Estimator
             CursorClear();
 
             //
-            // greet user
+            // call in method to determine greeting time of day
             //
-            currentTimeOfDay = timeOfDay();
-
-            Console.WriteLine();
-            Console.WriteLine("     Good " + currentTimeOfDay + " floor enthusiast!");
-            Console.WriteLine();
-            Console.WriteLine("     This application will help you calculate the cost of flooring up to two rooms!");
-
+            currentTimeOfDay = TimeOfDay();
             //
-            // get users name
+            // greet the user and ask for their name
             //
-
             Console.WriteLine();
-            Console.Write("     What is your name?  ");
+            Console.Write("     Good " + currentTimeOfDay + ", what is your name?  ");
             userName = Console.ReadLine();
-
+            //
             // clears the screen, sets cursor invisible
-            // echo users name back to them
+            //
             CursorClear();
+            //
+            // echos user name and asks for input
+            //
             Console.WriteLine();
-            Console.Write("     Why hello there, {0}, would you like to put some new flooring?", userName);
+            Console.Write(" {0}, are you interested in flooring two rooms in your home or business?", userName);
             userResponse = Console.ReadLine().ToLower();
             if (userResponse == "yes" || userResponse == "y")
-            {   validResponse = true;
-                while (validResponse is true)
-                {
-                    //
-                    //          *************************
-                    //          *   User Input Screen   *
-                    //          *************************
-                    //
-                    // set cursor invisible and clear screen
-                    CursorClear();
+            {
+                //
+                //          *************************
+                //          *   User Input Screen   *
+                //          *************************
+                //
+                // set cursor invisible and clear screen
+                CursorClear();
+                //
+                // display header
+                //
+                Console.WriteLine();
+                Console.WriteLine("         Floor Information");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine(" I am here to assist you");
+                Console.WriteLine();
+                Console.WriteLine(" I will need some information about the rooms you would like to get flooring installed");
+                //
+                // get size of users rooms using area method
+                //
+                Console.WriteLine();
+                Console.WriteLine(" Let's start with your first room");
+                Console.WriteLine("What is the length of the room?");
+                roomOneLength = IsValidInt();
+                Console.WriteLine(" What is the width of the room?");
+                roomOneWidth = IsValidInt();
+                roomOne = roomOneLength * roomOneWidth;
+                Console.WriteLine();
+                Console.WriteLine(" And now for your second room");
+                Console.WriteLine("What is the length of the room?");
+                roomTwoLength = IsValidInt();
+                Console.WriteLine(" What is the width of the room?");
+                roomTwoWidth = IsValidInt();
+                roomTwo = roomTwoLength * roomTwoWidth;
+                
 
-                    //
-                    // display header
-                    //
+                // echo back suqare footage
+                Console.WriteLine(" Room one is {0} sq ft and room two is {1} sq ft", roomOne, roomTwo);
+                //
+                // get what type of flooring user wants
+                //
+                Console.WriteLine();
+                Console.ReadKey();
+                do
+                {
+                    validResponse = true;
+                    CursorClear();
+                    Console.WriteLine();
+                    Console.WriteLine("         Type of Flooring");
+                    Console.WriteLine();
+
+                    Console.WriteLine();
+                    Console.WriteLine(" What type of flooring would you like to install so I can determine the cost to install flooring");
+                    Console.WriteLine(" Hardwood    Vinyl   Stone");
+                    Console.Write("Enter floor type:");
+                    floorType = Console.ReadLine().ToLower();
+
+                    if (floorType != "hardwood" && floorType != "vinyl" && floorType != "stone")
+                    {
+                        validResponse = false;
+
+                        Console.WriteLine();
+                        Console.WriteLine(" I'm sorry, I am not familiar with the floor type {0}, please reenter a valid floor type.");
+
+                        Console.ReadKey();
+                        Console.WriteLine(" Press any key to continue.");
+                    }
+
+
+
+                } while (!validResponse);
+
+                switch (floorType)
+                {
+                    case "hardwood":
+                        floorCost = HARDWOOD_FLOOR;
+                        break;
+                    case "vinyl":
+                        floorCost = VINYL_FLOOR;
+                        break;
+                    case "stone":
+                        floorCost = STONE_TILE;
+                        break;
+                    default:
+                        floorCost = 0;
+                        break;
                 }
+                if (floorCost != 0.0)
+                {
+                    roomOneDouble = Convert.ToDouble(roomOne);
+                    costOne = roomOneDouble * floorCost;
+                    roomTwoDouble = Convert.ToDouble(roomTwo);
+                    costTwo = roomTwoDouble * floorCost;
+                    Console.WriteLine("The cost of room one is {0} and the cost of room 2 is {1}", costOne, costTwo);
+                }
+
             }
             else
             {
-
+                currentTimeOfDay = TimeOfDay();
+                Console.WriteLine("Sorry you are not interested in installing a new floor {0}, have a nice {1}", userName, currentTimeOfDay);
+                Console.ReadKey();
             }
 
+        }
+        // method to validate if a users input is an integer
+        public static int IsValidInt()
+        {
+            bool IsValidInt = false;
+            int validInt = 0;
+            while (!IsValidInt)
+            {
+                IsValidInt = int.TryParse(Console.ReadLine(), out validInt);
+                if (!IsValidInt)
+                {
+                    Console.WriteLine("Sorry, that is not a valid number, please try again");
+                    IsValidInt = false;
+                }
+            }
+            return validInt;
         }
 
         //
         // method to determine if its morning, afternoon, evening or night time for user
         //
-        public static string timeOfDay()
+        public static string TimeOfDay()
         {
             DateTime currentTime = DateTime.Now;
             string currentTimeOfDay;
 
-            if (currentTime.Hour< 12 && currentTime.Hour >= 5)
+            if (currentTime.Hour < 12 && currentTime.Hour >= 5)
             {
                 currentTimeOfDay = "morning";
             }
@@ -176,6 +279,6 @@ namespace Flooring_Estimator
             Console.CursorVisible = false;
             Console.Clear();
         }
-        
+
     }
 }
