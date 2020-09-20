@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Media;
+using System.Threading;
 
 namespace Flooring_Estimator
 {
@@ -14,12 +15,15 @@ namespace Flooring_Estimator
     // Description:         This application that will have a conversation with the user
     //                      about flooring a room.
     // Date Created:        9/17/2020
-    // Date Revised:        9/19/2020
+    // Date Revised:        9/20/2020
     // **************************************************************************************
     class Program
     {
         static void Main(string[] args)
         {
+            //
+            // calling in the sound player to play music in the application
+            //
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + "\\crowsnest.wav";
             player.PlayLooping();
@@ -47,20 +51,63 @@ namespace Flooring_Estimator
             // call in the functions to set background colors, foreground colors,
             // set cursor invisible and clear screen
             //
-            OpenScreen();
             CursorClear();
 
             //
             // opening screen
+            // use a for loop to change colors of the font
+            // set the size of the window
+            // set where the ASCII art will appear
+            // sleep for 3 seconds
             //
+            for (int i = 0; i < 17; i++)
+            {
+                Console.SetWindowSize(120, 28);
+                Console.SetCursorPosition(0, 2);
+                ConsoleColor[] colour = {ConsoleColor.Red,
+                           ConsoleColor.White,
+                           ConsoleColor.Yellow,
+                           ConsoleColor.Magenta,
+                           ConsoleColor.Blue,
+                           ConsoleColor.DarkYellow,
+                           ConsoleColor.Cyan,
+                           ConsoleColor.Red,
+                           ConsoleColor.DarkCyan,
+                           ConsoleColor.DarkGreen,
+                           ConsoleColor.DarkMagenta,
+                           ConsoleColor.DarkRed,
+                           ConsoleColor.DarkYellow,
+                           ConsoleColor.Cyan,
+                           ConsoleColor.Yellow,
+                           ConsoleColor.White,
+                           ConsoleColor.Green
+                           };
+                Console.ForegroundColor = colour[i];
+                Console.Write(@"                                                                                                                                                              
+                                                          _  .-')               .-') _             
+                                                         ( \( -O )             ( OO ) )            
+               ,------.,--.      .-'),-----.  .-'),-----. ,------.  ,-.-') ,--./ ,--,'  ,----.     
+            ('-| _.---'|  |.-') ( OO'  .-.  '( OO'  .-.  '|   /`. ' |  |OO)|   \ |  |\ '  .-./-')  
+            (OO|(_\    |  | OO )/   |  | |  |/   |  | |  ||  /  | | |  |  \|    \|  | )|  |_( O- ) 
+            /  |  '--. |  |`-' |\_) |  |\|  |\_) |  |\|  ||  |_.' | |  |(_/|  .     |/ |  | .--, \ 
+            \_)|  .--'(|  '---.'  \ |  | |  |  \ |  | |  ||  .  '.',|  |_.'|  |\    | (|  | '. (_/ 
+              \|  |_)  |      |    `'  '-'  '   `'  '-'  '|  |\  \(_|  |   |  | \   |  |  '--'  |  
+               `--'    `------'      `-----'      `-----' `--' '--' `--'   `--'  `--'   `------' 
 
-
-            Console.WriteLine();
-            Console.WriteLine("     The Floor Estimator 2020 edition");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("     Press any key to continue");
+               ('-.    .-')    .-') _          _   .-')      ('-.     .-') _                _  .-')   
+             _(  OO)  ( OO ). (  OO) )        ( '.( OO )_   ( OO ).-.(  OO) )              ( \( -O )  
+            (,------.(_)---\_)/     '._ ,-.-') ,--.   ,--.) / . --. //     '._  .-'),-----. ,------.  
+             |  .---'/    _ | |'--...__)|  |OO)|   `.'   |  | \-.  \ |'--...__)( OO'  .-.  '|   /`. ' 
+             |  |    \  :` `. '--.  .--'|  |  \|         |.-'-'  |  |'--.  .--'/   |  | |  ||  /  | | 
+            (|  '--.  '..`''.)   |  |   |  |(_/|  |'.'|  | \| |_.'  |   |  |   \_) |  |\|  ||  |_.' | 
+             |  .--' .-._)   \   |  |  ,|  |_.'|  |   |  |  |  .-.  |   |  |     \ |  | |  ||  .  '.' 
+             |  `---.\       /   |  | (_|  |   |  |   |  |  |  | |  |   |  |      `'  '-'  '|  |\  \  
+             `------' `-----'    `--'   `--'   `--'   `--'  `--' `--'   `--'        `-----' `--' '--'
+            
+");
+                Thread.Sleep(300);
+            }
+            Console.WriteLine("                                         Press any key to continue.");
             Console.ReadKey();
 
             //          
@@ -83,25 +130,24 @@ namespace Flooring_Estimator
             // greet the user and ask for their name
             //
             Console.WriteLine();
-            Console.Write("     Good " + currentTimeOfDay + ", what is your name?  ");
+            Console.Write("                 Good " + currentTimeOfDay + ", what is your name?  ");
             userName = Console.ReadLine();
             //
-            // clears the screen, sets cursor invisible
-            //
-            CursorClear();
-            //
-            // echos user name and asks for input
+            // echos user name and ask if they want to use the application
             //
             Console.WriteLine();
-            Console.Write(" {0}, are you interested in flooring two rooms in your home or business?", userName);
+            Console.Write("                 {0}, are you interested in flooring two rooms in your home or business?  ", userName);
             userResponse = Console.ReadLine().ToLower();
+            //
+            // determines if user wants to use the application
+            //
             if (userResponse == "yes" || userResponse == "y")
             {
                 //
                 //          *************************
                 //          *   User Input Screen   *
                 //          *************************
-                //
+                //          
                 // set cursor invisible and clear screen
                 CursorClear();
                 //
@@ -109,46 +155,56 @@ namespace Flooring_Estimator
                 //
                 Console.WriteLine();
                 Console.WriteLine("         Floor Information");
+                Console.WriteLine("__________________________________________________________________________________________________");
                 Console.WriteLine();
+                Console.WriteLine("         I am here to assist you");
                 Console.WriteLine();
-                Console.WriteLine(" I am here to assist you");
-                Console.WriteLine();
-                Console.WriteLine(" I will need some information about the rooms you would like to get flooring installed");
+                Console.WriteLine("         I will need some information about the rooms you would like to get flooring installed");
                 //
                 // get size of users rooms using area method
                 //
                 Console.WriteLine();
-                Console.WriteLine(" Let's start with your first room");
-                Console.WriteLine("What is the length of the room?");
+                Console.WriteLine("         I will need the dimensions first room");
+                Console.Write("         Enter the length of the room:  ");
                 rmOneL = IsValidInt();
-                Console.WriteLine(" What is the width of the room?");
+                Console.Write("         Enter the width of the room:  ");
                 rmOneW = IsValidInt();
 
                 Console.WriteLine();
-                Console.WriteLine(" And now for your second room");
-                Console.WriteLine("What is the length of the room?");
+                Console.WriteLine("         Now I need the dimensions for your second room");
+                Console.Write("         Enter the length of the room:  ");
                 rmTwoL = IsValidInt();
-                Console.WriteLine(" What is the width of the room?");
+                Console.Write("         Enter the width of the room:  ");
                 rmTwoW = IsValidInt();
-                //
-                // get what type of flooring user wants
-                //
+
                 Console.WriteLine();
                 Console.ReadKey();
-
+                //
+                // clear console, set cursor invisible
+                //
                 CursorClear();
+                //
+                //          **********************
+                //          *   input screen     *
+                //          **********************
+                //
                 Console.WriteLine();
                 Console.WriteLine("         Type of Flooring");
+                Console.WriteLine("__________________________________________________________________________________________________");
                 Console.WriteLine();
-
-                Console.WriteLine();
-                Console.WriteLine(" What type of flooring would you like to install so I can determine the cost to install flooring");
-                Console.WriteLine(" Hardwood    Vinyl   Stone");
-                Console.Write("Enter floor type for room one: ");
+                //
+                // here I ask the user what type of floor they want and set the cost per square foot by using the floor cost method I created
+                //
+                Console.WriteLine("         What type of flooring would you like to install so I can determine the cost to install flooring");
+                Console.WriteLine("         Hardwood    Vinyl   Stone");
+                Console.Write("         Enter floor type for room one: ");
                 rmOneCost = FloorCost();
-                Console.Write("Enter floor type for room two: ");
+                Console.Write("         Enter floor type for room two: ");
                 rmTwoCost = FloorCost();
-
+                //
+                // in these two blocks I set a variable to the users flooring types for the rooms using an if/else if/else block
+                // this way I can display it at the end of the appication in a table
+                //
                 if (rmOneCost == 10.30)
                 {
                     floorTypeOne = "Stone Tile";
@@ -175,29 +231,43 @@ namespace Flooring_Estimator
                     floorTypeTwo = "Hardwood";
                 }
 
-                // do math stuff here
+                //
+                // in this block I determine the area of the rooms and the cost of the rooms
+                // 
                 rmOne = rmOneL * rmOneW;
                 rmTwo = rmTwoL * rmTwoW;
                 costOne = rmOneCost * rmOne;
                 costTwo = rmTwoCost * rmTwo;
-
+                //
+                // clear console, cursor invisible
+                //
                 CursorClear();
+                //
+                // display header
+                //
+                Console.WriteLine();
+                Console.WriteLine("         Flooring Cost Table");
+                Console.WriteLine("__________________________________________________________________________________________________");
+                Console.WriteLine();
+                //
+                // display table of information for user
+                //
+                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", "Room", "Area", "Floor Type", "Cost"  ));
+                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}" , rmO, rmOne, floorTypeOne, costOne.ToString("C2")));
+                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}" , rmT, rmTwo, floorTypeTwo, costTwo.ToString("C2")));
 
                 Console.WriteLine();
-                Console.WriteLine("                 Flooring Cost Table");
-                Console.WriteLine();
-
-                Console.WriteLine(String.Format("{0, 20} - {1, 20} - {2, 20} - {3, 20}", "Room", "Area", "Floor Type", "Cost"  ));
-                Console.WriteLine(String.Format("{0, 20} - {1, 20} - {2, 20} - {3, 20}" , rmO, rmOne, floorTypeOne, costOne.ToString("C2")));
-                Console.WriteLine(String.Format("{0, 20} - {1, 20} - {2, 20} - {3, 20}" , rmT, rmTwo, floorTypeTwo, costTwo.ToString("C2")));
-
+                Console.ReadKey();
 
 
             }
+            //
+            // if user did not want to use program then it will read this message to them and end the application
+            //
             else
             {
                 currentTimeOfDay = TimeOfDay();
-                Console.WriteLine("Sorry you are not interested in installing a new floor {0}, have a nice {1}", userName, currentTimeOfDay);
+                Console.WriteLine("         Sorry you are not interested in installing a new floor {0}, have a nice {1}", userName, currentTimeOfDay);
                 Console.ReadKey();
             }
 
@@ -299,8 +369,8 @@ namespace Flooring_Estimator
         // method to set background and foreground colors for application screen
         public static void AppScreen()
         {
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
         }
 
         // method to set background and foreground colors for application closing screen
