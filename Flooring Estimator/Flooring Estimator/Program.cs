@@ -1,10 +1,10 @@
 ﻿using System;
-using System.CodeDom;
 using System.Media;
 using System.Threading;
 
 namespace Flooring_Estimator
-{
+{   
+    //
     // **************************************************************************************
     // Title:               The Flooring Estimator 2020 edition
     // Application Type:    Console
@@ -26,7 +26,6 @@ namespace Flooring_Estimator
             //
             // variables
             //
-
             string userName;
             string userResponse;
             string currentTimeOfDay;
@@ -36,6 +35,7 @@ namespace Flooring_Estimator
 
             int rmOne, rmTwo;
             int rmOneL, rmTwoL, rmOneW, rmTwoW;
+
             double costOne, costTwo;
             double rmOneCost, rmTwoCost;
 
@@ -49,7 +49,6 @@ namespace Flooring_Estimator
             //
             OpenScreen();
             CursorClear();
-
             //
             // opening screen
             // use a for loop to change colors of the font
@@ -304,8 +303,13 @@ namespace Flooring_Estimator
                 Console.WriteLine();
                 Console.WriteLine("         Press any key to exit");
                 Console.ReadKey();
-
+                //
+                // clear screen cursor invisible
+                //
                 CursorClear();
+                //
+                // using goodbye method
+                //
                 GoodBye();
 
 
@@ -320,12 +324,19 @@ namespace Flooring_Estimator
                 //
                 CloseScreen();
                 CursorClear();
+                //
+                // using goodbye method
+                //
                 GoodBye();
             }
                 
 
         }
-
+        //
+        //  method for a closing screen to say goodbye, similar to opening screen
+        //  says goodbye in ASCII art
+        //  pasuses for 3 seconeds before displaying press any key to exit
+        //
         public static void GoodBye()
         {
 
