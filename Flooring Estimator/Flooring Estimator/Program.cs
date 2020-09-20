@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Media;
 using System.Threading;
 
@@ -266,7 +261,7 @@ namespace Flooring_Estimator
                 //
                 Console.WriteLine();
                 Console.WriteLine("         Flooring Cost Table");
-                Console.WriteLine("__________________________________________________________________________________________________");
+                Console.WriteLine("         __________________________________________________________________________________________________");
                 Console.WriteLine();
                 //
                 // display table of information for user
@@ -285,8 +280,49 @@ namespace Flooring_Estimator
             //
             else
             {
-                currentTimeOfDay = TimeOfDay();
-                Console.WriteLine("         Sorry you are not interested in installing a new floor {0}, have a nice {1}", userName, currentTimeOfDay);
+                CursorClear();
+                for (int i = 0; i < 17; i++)
+                {
+                    Console.SetWindowSize(120, 30);
+                    Console.SetCursorPosition(0, 4);
+                    ConsoleColor[] colour = {ConsoleColor.White,
+                           ConsoleColor.Yellow,
+                           ConsoleColor.DarkYellow,
+                           ConsoleColor.Magenta,
+                           ConsoleColor.DarkMagenta,
+                           ConsoleColor.Red,
+                           ConsoleColor.DarkRed,
+                           ConsoleColor.White,
+                           ConsoleColor.Yellow,
+                           ConsoleColor.DarkYellow,
+                           ConsoleColor.Magenta,
+                           ConsoleColor.DarkMagenta,
+                           ConsoleColor.Red,
+                           ConsoleColor.DarkRed,
+                           ConsoleColor.White,
+                           ConsoleColor.Yellow,
+                           ConsoleColor.Green
+                           };
+                    Console.ForegroundColor = colour[i];
+                    Console.Write(@"
+
+
+
+
+                                                     _ .-') _ .-. .-')                 ('-.   
+                                                     ( (  OO) )\  ( OO )              _(  OO)  
+                  ,----.     .-'),-----.  .-'),-----. \     .'_ ;-----.\  ,--.   ,--.(,------. 
+                 '  .-./-') ( OO'  .-.  '( OO'  .-.  ',`'--..._)| .-.  |   \  `.'  /  |  .---' 
+                 |  |_( O- )/   |  | |  |/   |  | |  ||  |  \  '| '-' /_).-')     /   |  |     
+                 |  | .--, \\_) |  |\|  |\_) |  |\|  ||  |   ' || .-. `.(OO  \   /   (|  '--.  
+                (|  | '. (_/  \ |  | |  |  \ |  | |  ||  |   / :| |  \  ||   /  /\_   |  .--'  
+                 |  '--'  |    `'  '-'  '   `'  '-'  '|  '--'  /| '--'  /`-./  /.__)  |  `---. 
+                  `------'       `-----'      `-----' `-------' `------'   `--'       `------' 
+            
+");
+                    Thread.Sleep(300);
+                }
+                Console.WriteLine("                                         Press any key to exit.");
                 Console.ReadKey();
             }
 

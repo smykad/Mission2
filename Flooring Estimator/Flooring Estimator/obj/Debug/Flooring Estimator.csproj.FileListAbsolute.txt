@@ -1,7 +1,6 @@
 C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\bin\Debug\Flooring Estimator.exe.config
 C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\bin\Debug\Flooring Estimator.exe
 C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\bin\Debug\Flooring Estimator.pdb
-C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\obj\Debug\Flooring Estimator.csprojAssemblyReference.cache
 C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\obj\Debug\Flooring Estimator.csproj.CoreCompileInputs.cache
 C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\obj\Debug\Flooring Estimator.exe
 C:\Users\dougs\Documents\CIT 110\ExpertSystem\Mission2\Flooring Estimator\Flooring Estimator\obj\Debug\Flooring Estimator.pdb
