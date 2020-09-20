@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Media;
 using System.Threading;
 
@@ -268,9 +269,9 @@ namespace Flooring_Estimator
                 //
                 // display table of information for user
                 //
-                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", "Room", "Area", "Floor Type", "Cost"  ));
-                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}" , rmO, rmOne, floorTypeOne, costOne.ToString("C2")));
-                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}" , rmT, rmTwo, floorTypeTwo, costTwo.ToString("C2")));
+                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", "Room", "Area", "Floor Type", "Cost"));
+                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", rmO, rmOne, floorTypeOne, costOne.ToString("C2")));
+                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", rmT, rmTwo, floorTypeTwo, costTwo.ToString("C2")));
                 //
                 // pause app for user
                 //
@@ -304,6 +305,9 @@ namespace Flooring_Estimator
                 Console.WriteLine("         Press any key to exit");
                 Console.ReadKey();
 
+                CursorClear();
+                GoodBye();
+
 
             }
             //
@@ -316,63 +320,73 @@ namespace Flooring_Estimator
                 //
                 CloseScreen();
                 CursorClear();
-
-                for (int i = 0; i < 17; i++)
-                {
-                    Console.SetWindowSize(120, 30);
-                    Console.SetCursorPosition(0, 4);
-                    ConsoleColor[] colour = {ConsoleColor.White,
-                           ConsoleColor.Yellow,
-                           ConsoleColor.DarkYellow,
-                           ConsoleColor.Magenta,
-                           ConsoleColor.DarkMagenta,
-                           ConsoleColor.Red,
-                           ConsoleColor.DarkRed,
-                           ConsoleColor.White,
-                           ConsoleColor.Yellow,
-                           ConsoleColor.DarkYellow,
-                           ConsoleColor.Magenta,
-                           ConsoleColor.DarkMagenta,
-                           ConsoleColor.Red,
-                           ConsoleColor.DarkRed,
-                           ConsoleColor.White,
-                           ConsoleColor.Yellow,
-                           ConsoleColor.Green
-                           };
-                    Console.ForegroundColor = colour[i];
-                    Console.Write(@"
-
-
-
-
-                                                     _ .-') _ .-. .-')                 ('-.   
-                                                     ( (  OO) )\  ( OO )              _(  OO)  
-                  ,----.     .-'),-----.  .-'),-----. \     .'_ ;-----.\  ,--.   ,--.(,------. 
-                 '  .-./-') ( OO'  .-.  '( OO'  .-.  ',`'--..._)| .-.  |   \  `.'  /  |  .---' 
-                 |  |_( O- )/   |  | |  |/   |  | |  ||  |  \  '| '-' /_).-')     /   |  |     
-                 |  | .--, \\_) |  |\|  |\_) |  |\|  ||  |   ' || .-. `.(OO  \   /   (|  '--.  
-                (|  | '. (_/  \ |  | |  |  \ |  | |  ||  |   / :| |  \  ||   /  /\_   |  .--'  
-                 |  '--'  |    `'  '-'  '   `'  '-'  '|  '--'  /| '--'  /`-./  /.__)  |  `---. 
-                  `------'       `-----'      `-----' `-------' `------'   `--'       `------' 
-            
-");
-                    Thread.Sleep(300);
-                }
-                Console.WriteLine("                                         Press any key to exit.");
-                Console.ReadKey();
+                GoodBye();
             }
+                
+
+        }
+
+        public static void GoodBye()
+        {
+
+            for (int i = 0; i < 17; i++)
+            {
+                Console.SetWindowSize(120, 30);
+                Console.SetCursorPosition(0, 4);
+                ConsoleColor[] colour = {ConsoleColor.White,
+                               ConsoleColor.Yellow,
+                               ConsoleColor.DarkYellow,
+                               ConsoleColor.Magenta,
+                               ConsoleColor.DarkMagenta,
+                               ConsoleColor.Red,
+                               ConsoleColor.DarkRed,
+                               ConsoleColor.White,
+                               ConsoleColor.Yellow,
+                               ConsoleColor.DarkYellow,
+                               ConsoleColor.Magenta,
+                               ConsoleColor.DarkMagenta,
+                               ConsoleColor.Red,
+                               ConsoleColor.DarkRed,
+                               ConsoleColor.White,
+                               ConsoleColor.Yellow,
+                               ConsoleColor.Green
+                               };
+                Console.ForegroundColor = colour[i];
+                Console.Write(@"
+
+
+
+
+                                                         _ .-') _ .-. .-')                 ('-.   
+                                                         ( (  OO) )\  ( OO )              _(  OO)  
+                      ,----.     .-'),-----.  .-'),-----. \     .'_ ;-----.\  ,--.   ,--.(,------. 
+                     '  .-./-') ( OO'  .-.  '( OO'  .-.  ',`'--..._)| .-.  |   \  `.'  /  |  .---' 
+                     |  |_( O- )/   |  | |  |/   |  | |  ||  |  \  '| '-' /_).-')     /   |  |     
+                     |  | .--, \\_) |  |\|  |\_) |  |\|  ||  |   ' || .-. `.(OO  \   /   (|  '--.  
+                    (|  | '. (_/  \ |  | |  |  \ |  | |  ||  |   / :| |  \  ||   /  /\_   |  .--'  
+                     |  '--'  |    `'  '-'  '   `'  '-'  '|  '--'  /| '--'  /`-./  /.__)  |  `---. 
+                      `------'       `-----'      `-----' `-------' `------'   `--'       `------' 
+            
+    ");
+                Thread.Sleep(300);
+            }
+            Console.WriteLine("                                         Press any key to exit.");
+            Console.ReadKey();
 
         }
         // method to validate if a users input is an integer
         public static int IsValidInt()
         {
+            // using bool to run the loop
             bool IsValidInt = false;
             int validInt = 0;
             while (!IsValidInt)
             {
+                // test the users input, is it an integer?
                 IsValidInt = int.TryParse(Console.ReadLine(), out validInt);
                 if (!IsValidInt)
                 {
+                    // if it is not an integer it will prompt user again
                     Console.WriteLine();
                     Console.WriteLine("         Sorry, that is not valid.");
                     Console.WriteLine();
@@ -380,19 +394,28 @@ namespace Flooring_Estimator
                     IsValidInt = false;
                 }
             }
+            // input was an integer, returns the integer
             return validInt;
         }
 
-
+        //
+        // method to check user input and return flooring cost double variable
+        //
         public static double FloorCost()
         {
+            //
+            // variables
+            //
             string floorType;
             bool validResponse;
             double floorCost;
-
+            //
+            // constant doubles
+            //
             const double HARDWOOD_FLOOR = 7.80;
             const double VINYL_FLOOR = 2.00;
             const double STONE_TILE = 10.30;
+            // do/while loop to determine if user input is valid
             do
             {
                 validResponse = true;
@@ -410,7 +433,9 @@ namespace Flooring_Estimator
 
 
             } while (!validResponse);
-
+            //
+            // after user input is validated use a switch/case to determine the cost of the flooring
+            //
             switch (floorType)
             {
                 case "hardwood":
@@ -433,9 +458,10 @@ namespace Flooring_Estimator
         //
         public static string TimeOfDay()
         {
+            // imports the current time
             DateTime currentTime = DateTime.Now;
             string currentTimeOfDay;
-
+            // tests what time it is to give output
             if (currentTime.Hour < 12 && currentTime.Hour >= 5)
             {
                 currentTimeOfDay = "morning";
@@ -452,6 +478,7 @@ namespace Flooring_Estimator
             {
                 currentTimeOfDay = "night";
             }
+            // returns a string variable that can be used to tell what time of day it is
             return currentTimeOfDay;
         }
         // method to set background and foreground colors for opening screen
