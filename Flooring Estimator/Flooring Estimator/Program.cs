@@ -62,24 +62,24 @@ namespace Flooring_Estimator
             //
             for (int i = 0; i < 17; i++)
             {
-                Console.SetWindowSize(120, 28);
+                Console.SetWindowSize(120, 30);
                 Console.SetCursorPosition(0, 2);
-                ConsoleColor[] colour = {ConsoleColor.Red,
-                           ConsoleColor.White,
+                ConsoleColor[] colour = {ConsoleColor.White,
                            ConsoleColor.Yellow,
+                           ConsoleColor.DarkYellow,
                            ConsoleColor.Magenta,
-                           ConsoleColor.Blue,
-                           ConsoleColor.DarkYellow,
-                           ConsoleColor.Cyan,
-                           ConsoleColor.Red,
-                           ConsoleColor.DarkCyan,
-                           ConsoleColor.DarkGreen,
                            ConsoleColor.DarkMagenta,
+                           ConsoleColor.Red,
                            ConsoleColor.DarkRed,
-                           ConsoleColor.DarkYellow,
-                           ConsoleColor.Cyan,
-                           ConsoleColor.Yellow,
                            ConsoleColor.White,
+                           ConsoleColor.Yellow,
+                           ConsoleColor.DarkYellow,
+                           ConsoleColor.Magenta,
+                           ConsoleColor.DarkMagenta,
+                           ConsoleColor.Red,
+                           ConsoleColor.DarkRed,
+                           ConsoleColor.White,
+                           ConsoleColor.Yellow,
                            ConsoleColor.Green
                            };
                 Console.ForegroundColor = colour[i];
@@ -130,13 +130,16 @@ namespace Flooring_Estimator
             // greet the user and ask for their name
             //
             Console.WriteLine();
-            Console.Write("                 Good " + currentTimeOfDay + ", what is your name?  ");
+            Console.WriteLine("         Flooring Estimator Application");
+            Console.WriteLine("         __________________________________________________________________________________________________");
+            Console.WriteLine();
+            Console.Write("         Good " + currentTimeOfDay + ", what is your name?  ");
             userName = Console.ReadLine();
             //
             // echos user name and ask if they want to use the application
             //
             Console.WriteLine();
-            Console.Write("                 {0}, are you interested in flooring two rooms in your home or business?  ", userName);
+            Console.Write("         {0}, are you interested in flooring two rooms in your home or business?  ", userName);
             userResponse = Console.ReadLine().ToLower();
             //
             // determines if user wants to use the application
@@ -155,7 +158,7 @@ namespace Flooring_Estimator
                 //
                 Console.WriteLine();
                 Console.WriteLine("         Floor Information");
-                Console.WriteLine("__________________________________________________________________________________________________");
+                Console.WriteLine("         __________________________________________________________________________________________________");
                 Console.WriteLine();
                 Console.WriteLine("         I am here to assist you");
                 Console.WriteLine();
@@ -165,6 +168,7 @@ namespace Flooring_Estimator
                 //
                 Console.WriteLine();
                 Console.WriteLine("         I will need the dimensions first room");
+                Console.WriteLine();
                 Console.Write("         Enter the length of the room:  ");
                 rmOneL = IsValidInt();
                 Console.Write("         Enter the width of the room:  ");
@@ -172,31 +176,36 @@ namespace Flooring_Estimator
 
                 Console.WriteLine();
                 Console.WriteLine("         Now I need the dimensions for your second room");
+                Console.WriteLine();
                 Console.Write("         Enter the length of the room:  ");
                 rmTwoL = IsValidInt();
                 Console.Write("         Enter the width of the room:  ");
                 rmTwoW = IsValidInt();
-
+                //
+                // pause application for user
+                //
                 Console.WriteLine();
+                Console.Write("         Press any key to continue.");
                 Console.ReadKey();
                 //
                 // clear console, set cursor invisible
                 //
                 CursorClear();
-                //
+                //          
                 //          **********************
                 //          *   input screen     *
                 //          **********************
                 //
                 Console.WriteLine();
                 Console.WriteLine("         Type of Flooring");
-                Console.WriteLine("__________________________________________________________________________________________________");
+                Console.WriteLine("         __________________________________________________________________________________________________");
                 Console.WriteLine();
                 //
                 // here I ask the user what type of floor they want and set the cost per square foot by using the floor cost method I created
                 //
                 Console.WriteLine("         What type of flooring would you like to install so I can determine the cost to install flooring");
-                Console.WriteLine("         Hardwood    Vinyl   Stone");
+                Console.WriteLine("         Hardwood    |   Vinyl   |   Stone");
+                Console.WriteLine();
                 Console.Write("         Enter floor type for room one: ");
                 rmOneCost = FloorCost();
                 Console.Write("         Enter floor type for room two: ");
@@ -239,9 +248,19 @@ namespace Flooring_Estimator
                 costOne = rmOneCost * rmOne;
                 costTwo = rmTwoCost * rmTwo;
                 //
+                // pause application for user
+                //
+                Console.WriteLine();
+                Console.Write("         Press any key to continue.");
+                Console.ReadKey();
+                //
                 // clear console, cursor invisible
                 //
                 CursorClear();
+                //          
+                //          *********************
+                //          *   Table Screen    *
+                //          *********************
                 //
                 // display header
                 //
