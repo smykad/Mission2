@@ -269,9 +269,9 @@ namespace Flooring_Estimator
                 //
                 // display table of information for user
                 //
-                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", "Room", "Area", "Floor Type", "Cost"));
-                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", rmO, rmOne, floorTypeOne, costOne.ToString("C2")));
-                Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", rmT, rmTwo, floorTypeTwo, costTwo.ToString("C2")));
+                Console.WriteLine(String.Format("{0, 20}  {1, 15}  {2, 15}  {3, 15}", "Room", "Area", "Floor Type", "Cost"));
+                Console.WriteLine(String.Format("{0, 20}  {1, 15}  {2, 15}  {3, 15}", rmO, rmOne + " sq ft", floorTypeOne, costOne.ToString("C2")));
+                Console.WriteLine(String.Format("{0, 20}  {1, 15}  {2, 15}  {3, 15}", rmT, rmTwo + " sq ft", floorTypeTwo, costTwo.ToString("C2")));
                 //
                 // pause app for user
                 //
