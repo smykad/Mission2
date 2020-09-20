@@ -46,6 +46,7 @@ namespace Flooring_Estimator
             // call in the functions to set background colors, foreground colors,
             // set cursor invisible and clear screen
             //
+            OpenScreen();
             CursorClear();
 
             //
@@ -75,7 +76,7 @@ namespace Flooring_Estimator
                            ConsoleColor.DarkRed,
                            ConsoleColor.White,
                            ConsoleColor.Yellow,
-                           ConsoleColor.Green
+                           ConsoleColor.White
                            };
                 Console.ForegroundColor = colour[i];
                 Console.Write(@"                                                                                                                                                              
@@ -203,6 +204,7 @@ namespace Flooring_Estimator
                 Console.WriteLine();
                 Console.Write("         Enter floor type for room one: ");
                 rmOneCost = FloorCost();
+                Console.WriteLine();
                 Console.Write("         Enter floor type for room two: ");
                 rmTwoCost = FloorCost();
                 //
@@ -269,8 +271,37 @@ namespace Flooring_Estimator
                 Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}", "Room", "Area", "Floor Type", "Cost"  ));
                 Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}" , rmO, rmOne, floorTypeOne, costOne.ToString("C2")));
                 Console.WriteLine(String.Format("{0, 20}  {1, 20}  {2, 20}  {3, 20}" , rmT, rmTwo, floorTypeTwo, costTwo.ToString("C2")));
-
+                //
+                // pause app for user
+                //
                 Console.WriteLine();
+                Console.WriteLine("             Press any key to continue.");
+                Console.ReadKey();
+                //
+                // clear console, cursor invisible, background/foreground colors set
+                //
+                CloseScreen();
+                CursorClear();
+                //
+                //          ***********************
+                //          *   Closing Screen    *
+                //          ***********************
+                // display header
+                //
+                Console.WriteLine();
+                Console.WriteLine("         Flooring Estimator Application");
+                Console.WriteLine("         __________________________________________________________________________________________________");
+                Console.WriteLine();
+                //
+                // use method to determine time of day
+                //
+                currentTimeOfDay = TimeOfDay();
+                Console.WriteLine("         Have a wonderful {0} {1}!", currentTimeOfDay, userName);
+                //
+                // pause application for user
+                //
+                Console.WriteLine();
+                Console.WriteLine("         Press any key to exit");
                 Console.ReadKey();
 
 
@@ -280,7 +311,12 @@ namespace Flooring_Estimator
             //
             else
             {
+                //
+                // clear screen, cursor invisible, display the message goodbye in ASCII art
+                //
+                CloseScreen();
                 CursorClear();
+
                 for (int i = 0; i < 17; i++)
                 {
                     Console.SetWindowSize(120, 30);
@@ -337,7 +373,10 @@ namespace Flooring_Estimator
                 IsValidInt = int.TryParse(Console.ReadLine(), out validInt);
                 if (!IsValidInt)
                 {
-                    Console.WriteLine("Sorry, that is not a valid number, please try again");
+                    Console.WriteLine();
+                    Console.WriteLine("         Sorry, that is not valid.");
+                    Console.WriteLine();
+                    Console.Write("         Please try again:  ");
                     IsValidInt = false;
                 }
             }
@@ -363,8 +402,9 @@ namespace Flooring_Estimator
                     validResponse = false;
 
                     Console.WriteLine();
-                    Console.WriteLine(" I'm sorry, I am not familiar with the floor type {0}, please reenter a valid floor type.", floorType);
-                    Console.Write(" Please enter a valid floor type: ");
+                    Console.WriteLine("         I'm sorry, I am not familiar with the floor type {0}, please reenter a valid floor type.", floorType);
+                    Console.WriteLine();
+                    Console.Write("         Please enter a valid floor type: ");
                 }
 
 
@@ -417,15 +457,15 @@ namespace Flooring_Estimator
         // method to set background and foreground colors for opening screen
         public static void OpenScreen()
         {
-            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Blue;
         }
 
         // method to set background and foreground colors for application screen
         public static void AppScreen()
         {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
         }
 
         // method to set background and foreground colors for application closing screen
